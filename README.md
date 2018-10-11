@@ -4,7 +4,7 @@
 
 ```scala
 val shutdown = StartKafka() // starts server
-shutdown() // shutdown server
+shutdown() // shuts down server
 ```
 
 ## Setup
@@ -12,5 +12,5 @@ shutdown() // shutdown server
 ```scala
 resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 
-libraryDependencies += "com.evolutiongaming" %% "kafka-launcher" % "0.0.1"
+libraryDependencies += "com.evolutiongaming" %% "kafka-launcher" % "0.0.2"
 ```
