@@ -19,10 +19,11 @@ object StartKafka {
 
   def apply(
     kafkaAddress: Address = Address.Kafka,
-    zkAddress: Address = Address.ZooKeeper): Shutdown = {
+    zkAddress: Address = Address.ZooKeeper,
+    overrides: Map[String, String] = Map.empty): Shutdown = {
 
     val shutdownZk = zooKeeperServer(zkAddress)
-    val shutdownKafka = kafkaServer(kafkaAddress = kafkaAddress, zkAddress = zkAddress)
+    val shutdownKafka = kafkaServer(kafkaAddress = kafkaAddress, zkAddress = zkAddress, overrides = overrides)
 
     () => {
       shutdownKafka()
@@ -44,25 +45,31 @@ object StartKafka {
     }
   }
 
-  private def kafkaServer(kafkaAddress: Address, zkAddress: Address) = {
+  private def kafkaServer(
+    kafkaAddress: Address,
+    zkAddress: Address,
+    overrides: Map[String, String]) = {
+
     val listener = s"${ SecurityProtocol.PLAINTEXT }://$kafkaAddress"
     val tmpDir = TmpDir("kafka-")
-    val props = Map[String, String](
-      KafkaConfig.HostNameProp -> kafkaAddress.host,
-      KafkaConfig.ZkConnectProp -> zkAddress.toString,
-      KafkaConfig.BrokerIdProp -> 0.toString,
-      KafkaConfig.ListenersProp -> listener,
-      KafkaConfig.AdvertisedListenersProp -> listener,
-      KafkaConfig.AutoCreateTopicsEnableProp -> true.toString,
-      KafkaConfig.LogDirProp -> tmpDir.file.getAbsolutePath,
-      KafkaConfig.LogFlushIntervalMessagesProp -> 1.toString,
-      KafkaConfig.OffsetsTopicReplicationFactorProp -> 1.toString,
-      KafkaConfig.OffsetsTopicPartitionsProp -> 1.toString,
-      KafkaConfig.TransactionsTopicReplicationFactorProp -> 1.toString,
-      KafkaConfig.TransactionsTopicMinISRProp -> 1.toString,
-      KafkaConfig.LogCleanerDedupeBufferSizeProp -> (10 * 1024L * 1024).toString,
-      KafkaConfig.GroupInitialRebalanceDelayMsProp -> 0.toString)
+    val defaults = Map[String, String](
+      (KafkaConfig.HostNameProp, kafkaAddress.host),
+      (KafkaConfig.ZkConnectProp, zkAddress.toString),
+      (KafkaConfig.BrokerIdProp, 0.toString),
+      (KafkaConfig.ListenersProp, listener),
+      (KafkaConfig.AdvertisedListenersProp, listener),
+      (KafkaConfig.AutoCreateTopicsEnableProp, true.toString),
+      (KafkaConfig.LogDirProp, tmpDir.file.getAbsolutePath),
+      (KafkaConfig.LogFlushIntervalMessagesProp, 1.toString),
+      (KafkaConfig.OffsetsTopicReplicationFactorProp, 1.toString),
+      (KafkaConfig.OffsetsTopicPartitionsProp, 1.toString),
+      (KafkaConfig.TransactionsTopicReplicationFactorProp, 1.toString),
+      (KafkaConfig.TransactionsTopicMinISRProp, 1.toString),
+      (KafkaConfig.LogCleanerDedupeBufferSizeProp, (10 * 1024L * 1024).toString),
+      (KafkaConfig.GroupInitialRebalanceDelayMsProp, 0.toString),
+      (KafkaConfig.ZkSessionTimeoutMsProp, 10000.toString))
 
+    val props = defaults ++ overrides
     val config = new KafkaConfig(props.asJava)
     val server = new KafkaServer(config)
     server.startup()
@@ -73,13 +80,14 @@ object StartKafka {
       tmpDir.delete()
     }
   }
-}
 
-final case class Address(host: String = "localhost", port: Int) {
-  override def toString: String = s"$host:$port"
-}
 
-object Address {
-  val Kafka: Address = Address(port = 9092)
-  val ZooKeeper: Address = Address(port = 2181)
+  final case class Address(host: String = "localhost", port: Int) {
+    override def toString: String = s"$host:$port"
+  }
+
+  object Address {
+    val Kafka: Address = Address(port = 9092)
+    val ZooKeeper: Address = Address(port = 2181)
+  }
 }

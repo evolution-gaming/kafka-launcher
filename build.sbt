@@ -34,8 +34,9 @@ scalacOptions in(Compile, doc) ++= Seq("-groups", "-implicits", "-no-link-warnin
 resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 
 libraryDependencies ++= Seq(
-  "org.apache.kafka" %% "kafka" % "2.0.0",
+  "org.apache.kafka" %% "kafka" % "2.0.1",
   "com.evolutiongaming" %% "tmp-dir" % "0.0.1",
+  "org.slf4j" % "slf4j-api" % "1.7.25",
   "org.scalatest" %% "scalatest" % "3.0.5" % Test)
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
