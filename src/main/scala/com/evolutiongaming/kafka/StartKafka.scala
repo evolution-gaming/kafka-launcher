@@ -34,7 +34,8 @@ object StartKafka {
   private def zooKeeperServer(address: Address) = {
     val tmpDir = TmpDir("zookeeper-")
     val inetAddress = new InetSocketAddress(address.host, address.port)
-    val server = new ZooKeeperServer(tmpDir.file, tmpDir.file, ZooKeeperServer.DEFAULT_TICK_TIME)
+    val file = tmpDir.path.toAbsolutePath.toFile
+    val server = new ZooKeeperServer(file, file, ZooKeeperServer.DEFAULT_TICK_TIME)
     SetShutdownHandler(server)
     val factory = ServerCnxnFactory.createFactory
     factory.configure(inetAddress, 1024)
@@ -59,7 +60,7 @@ object StartKafka {
       (KafkaConfig.ListenersProp, listener),
       (KafkaConfig.AdvertisedListenersProp, listener),
       (KafkaConfig.AutoCreateTopicsEnableProp, true.toString),
-      (KafkaConfig.LogDirProp, tmpDir.file.getAbsolutePath),
+      (KafkaConfig.LogDirProp, tmpDir.path.toAbsolutePath.toString),
       (KafkaConfig.LogFlushIntervalMessagesProp, 1.toString),
       (KafkaConfig.OffsetsTopicReplicationFactorProp, 1.toString),
       (KafkaConfig.OffsetsTopicPartitionsProp, 1.toString),
