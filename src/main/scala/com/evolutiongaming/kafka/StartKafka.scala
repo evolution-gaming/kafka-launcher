@@ -32,7 +32,7 @@ object StartKafka {
   }
 
   private def zooKeeperServer(address: Address) = {
-    val tmpDir = TmpDir("zookeeper-")
+    val tmpDir = TmpDir("zookeeper-", deleteOnExit = false)
     val inetAddress = new InetSocketAddress(address.host, address.port)
     val file = tmpDir.path.toAbsolutePath.toFile
     val server = new ZooKeeperServer(file, file, ZooKeeperServer.DEFAULT_TICK_TIME)
@@ -52,7 +52,7 @@ object StartKafka {
     overrides: Map[String, String]) = {
 
     val listener = s"${ SecurityProtocol.PLAINTEXT }://$kafkaAddress"
-    val tmpDir = TmpDir("kafka-")
+    val tmpDir = TmpDir("kafka-", deleteOnExit = false)
     val defaults = Map[String, String](
       (KafkaConfig.HostNameProp, kafkaAddress.host),
       (KafkaConfig.ZkConnectProp, zkAddress.toString),
