@@ -1,8 +1,8 @@
 package com.evolutiongaming.kafka
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-class StartKafkaSpec extends FunSuite {
+class StartKafkaSpec extends AnyFunSuite {
 
   test("start and stop kafka") {
     val shutdown = StartKafka()
