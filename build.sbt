@@ -21,7 +21,7 @@ scalacOptions in(Compile, doc) ++= Seq("-groups", "-implicits", "-no-link-warnin
 resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 
 libraryDependencies ++= Seq(
-  "org.apache.kafka"    %% "kafka"     % "2.3.1",
+  "org.apache.kafka"    %% "kafka"     % "2.4.0",
   "com.evolutiongaming" %% "tmp-dir"   % "0.0.4",
   "org.slf4j"            % "slf4j-api" % "1.7.29",
   "org.scalatest"       %% "scalatest" % "3.1.0" % Test)
