@@ -12,5 +12,5 @@ shutdown() // shuts down server
 ```scala
 resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 
-libraryDependencies += "com.evolutiongaming" %% "kafka-launcher" % "0.0.2"
+libraryDependencies += "com.evolutiongaming" %% "kafka-launcher" % "0.0.9"
 ```
