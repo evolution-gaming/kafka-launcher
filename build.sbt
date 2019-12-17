@@ -14,18 +14,20 @@ bintrayOrganization := Some("evolutiongaming")
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq(/*"2.13.0", https://github.com/apache/kafka/pull/6989*/"2.12.9")
+crossScalaVersions := Seq("2.13.1", "2.12.10")
 
 scalacOptions in(Compile, doc) ++= Seq("-groups", "-implicits", "-no-link-warnings")
 
 resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 
 libraryDependencies ++= Seq(
-  "org.apache.kafka"    %% "kafka"     % "2.3.1",
+  "org.apache.kafka"    %% "kafka"     % "2.4.0",
   "com.evolutiongaming" %% "tmp-dir"   % "0.0.4",
-  "org.slf4j"            % "slf4j-api" % "1.7.29",
+  "org.slf4j"            % "slf4j-api" % "1.7.30",
   "org.scalatest"       %% "scalatest" % "3.1.0" % Test)
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
 
 releaseCrossBuild := true
+
+scalacOptsFailOnWarn := Some(false)
