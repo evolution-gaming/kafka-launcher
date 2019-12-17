@@ -23,7 +23,7 @@ resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 libraryDependencies ++= Seq(
   "org.apache.kafka"    %% "kafka"     % "2.3.1",
   "com.evolutiongaming" %% "tmp-dir"   % "0.0.4",
-  "org.slf4j"            % "slf4j-api" % "1.7.29",
+  "org.slf4j"            % "slf4j-api" % "1.7.30",
   "org.scalatest"       %% "scalatest" % "3.1.0" % Test)
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
