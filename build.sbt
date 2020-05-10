@@ -24,7 +24,7 @@ libraryDependencies ++= Seq(
   "org.apache.kafka"    %% "kafka"     % "2.4.1",
   "com.evolutiongaming" %% "tmp-dir"   % "0.0.4",
   "org.slf4j"            % "slf4j-api" % "1.7.30",
-  "org.scalatest"       %% "scalatest" % "3.1.1" % Test)
+  "org.scalatest"       %% "scalatest" % "3.1.2" % Test)
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
 
