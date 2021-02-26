@@ -14,7 +14,7 @@ bintrayOrganization := Some("evolutiongaming")
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.3", "2.12.10")
+crossScalaVersions := Seq("2.13.3", "2.12.13")
 
 Test / classLoaderLayeringStrategy := ClassLoaderLayeringStrategy.ScalaLibrary
 
