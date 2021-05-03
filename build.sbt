@@ -6,21 +6,19 @@ homepage := Some(new URL("http://github.com/evolution-gaming/kafka-launcher"))
 
 startYear := Some(2018)
 
-organizationName := "Evolution Gaming"
+organizationName := "Evolution"
 
 organizationHomepage := Some(url("http://evolutiongaming.com"))
 
-bintrayOrganization := Some("evolutiongaming")
-
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.3", "2.12.13")
+crossScalaVersions := Seq("2.13.5", "2.12.10")
 
 Test / classLoaderLayeringStrategy := ClassLoaderLayeringStrategy.ScalaLibrary
 
-scalacOptions in(Compile, doc) ++= Seq("-groups", "-implicits", "-no-link-warnings")
+Compile / doc / scalacOptions ++= Seq("-groups", "-implicits", "-no-link-warnings")
 
-resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
+publishTo := Some(Resolver.evolutionReleases)
 
 libraryDependencies ++= Seq(
   "org.apache.kafka"    %% "kafka"     % "2.6.0",
