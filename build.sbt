@@ -21,7 +21,7 @@ Compile / doc / scalacOptions ++= Seq("-groups", "-implicits", "-no-link-warning
 publishTo := Some(Resolver.evolutionReleases)
 
 libraryDependencies ++= Seq(
-  "org.apache.kafka"    %% "kafka"     % "2.7.1",
+  "org.apache.kafka"    %% "kafka"     % "2.8.0",
   "com.evolutiongaming" %% "tmp-dir"   % "0.0.5",
   "org.slf4j"            % "slf4j-api" % "1.7.32",
   "org.scalatest"       %% "scalatest" % "3.2.9" % Test)
