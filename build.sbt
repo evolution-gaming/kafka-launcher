@@ -12,7 +12,7 @@ organizationHomepage := Some(url("http://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.6", "2.12.14")
+crossScalaVersions := Seq("2.13.8", "2.12.15")
 
 Test / classLoaderLayeringStrategy := ClassLoaderLayeringStrategy.ScalaLibrary
 
@@ -21,10 +21,10 @@ Compile / doc / scalacOptions ++= Seq("-groups", "-implicits", "-no-link-warning
 publishTo := Some(Resolver.evolutionReleases)
 
 libraryDependencies ++= Seq(
-  "org.apache.kafka"    %% "kafka"     % "2.7.1",
+  "org.apache.kafka"    %% "kafka"     % "2.8.1",
   "com.evolutiongaming" %% "tmp-dir"   % "0.0.5",
-  "org.slf4j"            % "slf4j-api" % "1.7.32",
-  "org.scalatest"       %% "scalatest" % "3.2.9" % Test)
+  "org.slf4j"            % "slf4j-api" % "1.7.36",
+  "org.scalatest"       %% "scalatest" % "3.2.12" % Test)
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
 
