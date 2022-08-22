@@ -23,7 +23,7 @@ publishTo := Some(Resolver.evolutionReleases)
 libraryDependencies ++= Seq(
   "org.apache.kafka"    %% "kafka"     % "2.8.1",
   "com.evolutiongaming" %% "tmp-dir"   % "0.0.5",
-  "org.slf4j"            % "slf4j-api" % "1.7.36",
+  "org.slf4j"            % "slf4j-api" % "2.0.0",
   "org.scalatest"       %% "scalatest" % "3.2.12" % Test)
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
