@@ -54,7 +54,6 @@ object StartKafka {
     val listener = s"${ SecurityProtocol.PLAINTEXT }://$kafkaAddress"
     val tmpDir = TmpDir("kafka-", deleteOnExit = false)
     val defaults = Map[String, String](
-      (KafkaConfig.HostNameProp, kafkaAddress.host),
       (KafkaConfig.ZkConnectProp, zkAddress.toString),
       (KafkaConfig.BrokerIdProp, 0.toString),
       (KafkaConfig.ListenersProp, listener),
