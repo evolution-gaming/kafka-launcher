@@ -22,7 +22,7 @@ publishTo := Some(Resolver.evolutionReleases)
 
 libraryDependencies ++= Seq(
   "org.apache.kafka"    %% "kafka"     % "3.4.0",
-  "com.evolutiongaming" %% "tmp-dir"   % "0.0.5",
+  "com.evolutiongaming" %% "tmp-dir"   % "0.0.6",
   "org.slf4j"            % "slf4j-api" % "1.7.36",
   "org.scalatest"       %% "scalatest" % "3.2.12" % Test)
 
