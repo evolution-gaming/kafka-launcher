@@ -17,5 +17,5 @@ shutdown() // shuts down server
 ```scala
 addSbtPlugin("com.evolution" % "sbt-artifactory-plugin" % "0.0.2")
 
-libraryDependencies += "com.evolutiongaming" %% "kafka-launcher" % "0.0.9"
+libraryDependencies += "com.evolutiongaming" %% "kafka-launcher" % "0.1.0"
 ```
