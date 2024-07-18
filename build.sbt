@@ -2,13 +2,13 @@ name := "kafka-launcher"
 
 organization := "com.evolutiongaming"
 
-homepage := Some(new URL("http://github.com/evolution-gaming/kafka-launcher"))
+homepage := Some(url("https://github.com/evolution-gaming/kafka-launcher"))
 
 startYear := Some(2018)
 
 organizationName := "Evolution"
 
-organizationHomepage := Some(url("http://evolution.com"))
+organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
@@ -33,3 +33,7 @@ releaseCrossBuild := true
 scalacOptsFailOnWarn := Some(false)
 
 ThisBuild / versionScheme := Some("early-semver")
+
+//addCommandAlias("check", "all versionPolicyCheck Compile/doc")
+addCommandAlias("check", "show version")
+addCommandAlias("build", "+all compile test")
