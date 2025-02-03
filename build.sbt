@@ -12,7 +12,7 @@ organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.12", "2.12.18", "3.3.1")
+crossScalaVersions := Seq("2.13.12", "2.12.18", "3.3.5")
 
 Test / classLoaderLayeringStrategy := ClassLoaderLayeringStrategy.ScalaLibrary
 
