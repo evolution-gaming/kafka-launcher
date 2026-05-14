@@ -2,34 +2,38 @@ name := "kafka-launcher"
 
 organization := "com.evolutiongaming"
 
-homepage := Some(new URL("http://github.com/evolution-gaming/kafka-launcher"))
+homepage := Some(url("https://github.com/evolution-gaming/kafka-launcher"))
 
 startYear := Some(2018)
 
-organizationName := "Evolution Gaming"
+organizationName := "Evolution"
 
-organizationHomepage := Some(url("http://evolutiongaming.com"))
-
-bintrayOrganization := Some("evolutiongaming")
+organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.13.3", "2.12.10")
+crossScalaVersions := Seq("2.13.12", "2.12.18", "3.3.1")
 
 Test / classLoaderLayeringStrategy := ClassLoaderLayeringStrategy.ScalaLibrary
 
-scalacOptions in(Compile, doc) ++= Seq("-groups", "-implicits", "-no-link-warnings")
+Compile / doc / scalacOptions ++= Seq("-groups", "-implicits", "-no-link-warnings")
 
-resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
+publishTo := Some(Resolver.evolutionReleases)
 
 libraryDependencies ++= Seq(
-  "org.apache.kafka"    %% "kafka"     % "2.6.0",
-  "com.evolutiongaming" %% "tmp-dir"   % "0.0.5",
-  "org.slf4j"            % "slf4j-api" % "1.7.30",
-  "org.scalatest"       %% "scalatest" % "3.2.3" % Test)
+  "org.apache.kafka"    %% "kafka"     % "3.4.0" cross CrossVersion.for3Use2_13,
+  "com.evolutiongaming" %% "tmp-dir"   % "0.0.6",
+  "org.slf4j"            % "slf4j-api" % "1.7.36",
+  "org.scalatest"       %% "scalatest" % "3.2.12" % Test)
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
 
 releaseCrossBuild := true
 
 scalacOptsFailOnWarn := Some(false)
+
+ThisBuild / versionScheme := Some("early-semver")
+
+//addCommandAlias("check", "all versionPolicyCheck Compile/doc")
+addCommandAlias("check", "show version")
+addCommandAlias("build", "+all compile test")

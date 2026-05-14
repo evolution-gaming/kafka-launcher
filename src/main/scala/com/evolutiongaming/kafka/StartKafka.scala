@@ -7,7 +7,7 @@ import kafka.server.{KafkaConfig, KafkaServer}
 import org.apache.kafka.common.security.auth.SecurityProtocol
 import org.apache.zookeeper.server.{ServerCnxnFactory, SetShutdownHandler, ZooKeeperServer}
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 object StartKafka {
 
@@ -54,7 +54,6 @@ object StartKafka {
     val listener = s"${ SecurityProtocol.PLAINTEXT }://$kafkaAddress"
     val tmpDir = TmpDir("kafka-", deleteOnExit = false)
     val defaults = Map[String, String](
-      (KafkaConfig.HostNameProp, kafkaAddress.host),
       (KafkaConfig.ZkConnectProp, zkAddress.toString),
       (KafkaConfig.BrokerIdProp, 0.toString),
       (KafkaConfig.ListenersProp, listener),
